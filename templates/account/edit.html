@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Edit your account{% endblock %}
+
+{% block content %}
+
+    <h1>Edit your account </h1>
+    {% load thumbnail %}
+        {% thumbnail request.user.profile.photo "300" as im %}
+        <a href="{{ photo }}">
+            <img src="{{ im.url }}" class="image-detail">
+        </a>
+    <div class="image-info">
+    <p>You can edit your account using the following form:</p>
+    <form action="." method="post" enctype="multipart/form-data">
+
+    {% endthumbnail %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+
+
+        {% csrf_token %}
+        <p><input type="submit" value="Save changes"></p>
+    </form>
+    </div>
+
+
+
+{% endblock %}
